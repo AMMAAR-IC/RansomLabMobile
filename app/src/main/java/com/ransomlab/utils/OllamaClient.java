@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 public class OllamaClient {
 
     private static final String TAG = "OllamaClient";
-    private static final String MODEL = "kimi-k2-cloud";
+    private static final String MODEL = "kimi-k2:1t-cloud";
 
     public interface StreamCallback {
         void onChunk(String text);

@@ -241,7 +241,7 @@ public class PhoneSimView extends View {
         textPaint.setTextSize(sw * 0.07f);
         textPaint.setTypeface(Typeface.MONOSPACE);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        c.drawText("9:41", sx + sw * 0.06f, sy + sh * 0.04f, textPaint);
+        c.drawText("AMMAAR", sx + sw * 0.06f, sy + sh * 0.04f, textPaint);
 
         // Battery bar
         paint.setColor(Color.rgb(0, 220, 100));
