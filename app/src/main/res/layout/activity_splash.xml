@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#08080E">
+
+    <!-- Scanline sweep -->
+    <View
+        android:id="@+id/scanline"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#22FF2D55" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Logo -->
+        <TextView
+            android:id="@+id/tv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="◈  RANSOMLAB"
+            android:textColor="#FF2D55"
+            android:textSize="32sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:letterSpacing="0.12"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDUCATIONAL RANSOMWARE SIMULATOR"
+            android:textColor="#506080"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginBottom="48dp" />
+
+        <!-- Warning badge -->
+        <TextView
+            android:id="@+id/tv_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  ⚠  FOR SECURITY EDUCATION ONLY  "
+            android:textColor="#FFA000"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:padding="8dp"
+            android:background="@drawable/badge_amber" />
+
+    </LinearLayout>
+
+    <!-- Version bottom -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:text="v1.0  ·  Powered by Ollama kimi-k2"
+        android:textColor="#30405060"
+        android:textSize="9sp"
+        android:fontFamily="monospace" />
+
+</FrameLayout>

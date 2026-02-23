@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF2D55</item>
+        <item name="colorPrimaryDark">#08080E</item>
+        <item name="colorAccent">#00D4FF</item>
+        <item name="android:windowBackground">#08080E</item>
+        <item name="android:statusBarColor">#08080E</item>
+        <item name="android:navigationBarColor">#08080E</item>
+        <item name="toolbarStyle">@style/ToolbarStyle</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">#08080E</item>
+        <item name="android:statusBarColor">#08080E</item>
+        <item name="android:navigationBarColor">#08080E</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">#0D131F</item>
+        <item name="titleTextColor">#E8EEFF</item>
+        <item name="subtitleTextColor">#506070</item>
+    </style>
+
+</resources>

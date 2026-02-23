@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Left column: number + dot + line -->
+    <LinearLayout
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tv_phase_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="2dp" />
+
+        <View
+            android:id="@+id/phase_dot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="4dp" />
+
+        <View
+            android:id="@+id/phase_line"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:background="#1A2535"
+            android:layout_marginTop="2dp" />
+
+    </LinearLayout>
+
+    <!-- Phase text -->
+    <TextView
+        android:id="@+id/tv_phase_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#9AA5C0"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>

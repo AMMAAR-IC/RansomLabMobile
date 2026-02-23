@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#08080E">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0D131F" />
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A2030" />
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scrollbars="none">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="OLLAMA CONNECTION" android:textColor="#304050"
+                android:textSize="9sp" android:fontFamily="monospace" android:letterSpacing="0.12"
+                android:layout_marginBottom="10dp" android:layout_marginTop="10dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Ollama Server URL"
+                android:textColor="#9AA5C0" android:textSize="12sp" android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/et_ollama_url"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/input_field"
+                android:textColor="#E8EEFF"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="12dp"
+                android:hint="http://192.168.1.x:11434"
+                android:textColorHint="#30405060"
+                android:inputType="textUri"
+                android:layout_marginBottom="8dp" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Enter the IP of your PC on the same WiFi network.\nDefault Ollama port is 11434."
+                android:textColor="#506070" android:textSize="11sp" android:lineSpacingMultiplier="1.4"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Connection status -->
+            <TextView
+                android:id="@+id/tv_connection_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not tested"
+                android:textColor="#506070"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_test"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="TEST CONNECTION"
+                    android:textColor="#00D4FF"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:background="@drawable/btn_cyan"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:id="@+id/btn_save"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="SAVE"
+                    android:textColor="#00FF88"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:background="@drawable/btn_green" />
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A2030" android:layout_marginVertical="24dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="SETUP GUIDE" android:textColor="#304050"
+                android:textSize="9sp" android:fontFamily="monospace" android:letterSpacing="0.12"
+                android:layout_marginBottom="10dp" />
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="1. Install Ollama on your PC\n   https://ollama.com\n\n2. Start the server:\n   ollama serve\n\n3. Pull the model:\n   ollama pull kimi-k2-cloud\n\n4. Find your PC's local IP:\n   Windows: ipconfig\n   Mac/Linux: ifconfig\n\n5. Make sure your phone and PC are on the SAME WiFi network.\n\n6. Enter the IP above and tap Test Connection."
+                android:textColor="#506070" android:textSize="11sp" android:fontFamily="monospace"
+                android:lineSpacingMultiplier="1.5" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#08080E">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0D131F" />
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A2030" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top accent line -->
+            <View
+                android:id="@+id/header_accent"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Name + year -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="26sp"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:fontFamily="monospace" />
+
+            </LinearLayout>
+
+            <!-- Badge -->
+            <TextView
+                android:id="@+id/tv_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:padding="6dp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Stats grid -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THREAT METRICS"
+                android:textColor="#304050"
+                android:textSize="9sp"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="10dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#0D131F"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <include layout="@layout/row_stat" android:id="@+id/row_damage"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#121D30" android:layout_marginVertical="8dp" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DAMAGE" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_damage_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RANSOM" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_ransom_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#121D30" android:layout_marginVertical="8dp" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ENCRYPTION" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_encryption_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VECTOR" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_vector_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#121D30" android:layout_marginVertical="8dp" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ATTRIBUTION" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_attribution_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VICTIMS" android:textColor="#304050" android:textSize="8sp" android:fontFamily="monospace" />
+                            <TextView android:id="@+id/tv_victims_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="11sp" android:fontFamily="monospace" android:textStyle="bold" android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OVERVIEW"
+                android:textColor="#304050"
+                android:textSize="9sp"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#9AA5C0"
+                android:textSize="12sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Attack Phases -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATTACK PHASES"
+                android:textColor="#304050"
+                android:textSize="9sp"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:id="@+id/phases_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp" />
+
+            <!-- AI button -->
+            <LinearLayout
+                android:id="@+id/btn_ask_ai"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/btn_ai_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚡  ASK AI ABOUT THIS ATTACK"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

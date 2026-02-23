@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#07090F">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0D131F" />
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A2A3A" />
+
+    <!-- Status bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp"
+        android:background="#09101A">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OLLAMA  ·  kimi-k2-cloud  ·  "
+            android:textColor="#304050"
+            android:textSize="9sp"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:id="@+id/tv_ai_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="READY"
+            android:textColor="#00FF88"
+            android:textSize="9sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold" />
+
+        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="CLR"
+            android:textColor="#506070"
+            android:textSize="8sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/btn_dim" />
+
+    </LinearLayout>
+
+    <!-- Output scroll -->
+    <ScrollView
+        android:id="@+id/scroll_output"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:background="#07090F"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00CC66"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:lineSpacingMultiplier="1.4"
+            android:textIsSelectable="true" />
+
+    </ScrollView>
+
+    <!-- Divider -->
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#131E2E" />
+
+    <!-- Input row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:background="#0A0F1A">
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@drawable/input_field"
+            android:textColor="#00CC66"
+            android:textColorHint="#30506040"
+            android:hint="Ask about any ransomware..."
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:paddingHorizontal="12dp"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textCursorDrawable="@null" />
+
+        <TextView
+            android:id="@+id/btn_send"
+            android:layout_width="64dp"
+            android:layout_height="38dp"
+            android:text="SEND →"
+            android:textColor="#00D4FF"
+            android:textSize="9sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/btn_cyan"
+            android:layout_marginStart="6dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
