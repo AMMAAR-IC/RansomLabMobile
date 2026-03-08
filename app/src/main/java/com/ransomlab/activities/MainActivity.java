@@ -3,6 +3,8 @@ package com.ransomlab.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private PhoneSimView phoneSimView;
     private TextView tvStatus;
     private boolean isSimulating = false;
+    private int phoneClicks = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
         phoneSimView = findViewById(R.id.phone_sim);
         tvStatus = findViewById(R.id.tv_status);
+
+        // --- EASTER EGG 1: Name Change ---
+        // Make sure to add android:id="@+id/tv_main_logo_title" to your TextView in activity_main.xml!
+        TextView tvMainLogo = findViewById(R.id.tv_main_logo_title);
+        if (tvMainLogo != null) {
+            tvMainLogo.setOnClickListener(v -> {
+                tvMainLogo.setText("◈  AMMAAR-IC");
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    tvMainLogo.setText("◈  RANSOMLAB");
+                }, 5000); // Reverts after 5 seconds
+            });
+        }
 
         List<Attack> attacks = AttackRepository.getAll();
 
@@ -80,27 +95,32 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchAttack(Attack attack) {
         isSimulating = true;
-        int color = ColorUtil.parse(attack.color);
-        setStatus("▶  SIMULATING: " + attack.name.toUpperCase(), color);
+        // Use getColorHex() instead of .color
+        int color = ColorUtil.parse(attack.getColorHex());
+        // Use getName() instead of .name
+        setStatus("▶  SIMULATING: " + attack.getName().toUpperCase(), color);
 
-        phoneSimView.simulate(attack.name, color, attack.iswiper, () -> {
+        // Use getName(), getColorHex(), and isWiper()
+        phoneSimView.simulate(attack.getName(), color, attack.isWiper(), () -> {
             runOnUiThread(() -> {
-                if (attack.iswiper) {
-                    setStatus("☠  WIPED — " + attack.name + " (MBR Destroyed)", Color.rgb(80, 80, 80));
+                // Use isWiper() and getName()
+                if (attack.isWiper()) {
+                    setStatus("☠  WIPED — " + attack.getName() + " (MBR Destroyed)", Color.rgb(80, 80, 80));
                 } else {
-                    setStatus("🔒  RANSOMED — " + attack.name + " complete", color);
+                    setStatus("🔒  RANSOMED — " + attack.getName() + " complete", color);
                 }
                 isSimulating = false;
             });
         });
 
-        // Open detail bottom sheet after short delay
-        new android.os.Handler().postDelayed(() -> {
+        // Open detail bottom sheet after 18 seconds!
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent i = new Intent(this, AttackDetailActivity.class);
-            i.putExtra("attack_id", attack.id);
+            // Use getId() instead of .id
+            i.putExtra("attack_id", attack.getId());
             startActivity(i);
             overridePendingTransition(R.anim.slide_up, R.anim.fade_stay);
-        }, 600);
+        }, 18000);
     }
 
     private void setStatus(String text, int color) {
@@ -116,14 +136,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
-        }
-        if (item.getItemId() == R.id.action_ai) {
+        } else if (id == R.id.action_ai) {
             startActivity(new Intent(this, AiActivity.class));
             return true;
+        } else if (id == R.id.action_contributors) {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Contributors")
+                    .setMessage("• Ammaar\n• Ayaan")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return true;
+        } else if (id == R.id.action_contact) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(android.net.Uri.parse("mailto:the.ammaar.ic@gmail.com"));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "RansomLab App Inquiry");
+            startActivity(Intent.createChooser(intent, "Send Email"));
+            return true;
+        } else if (id == R.id.action_linkedin) {
+            startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://www.linkedin.com/in/ammaar-ic")));
+            return true;
+        } else if (id == R.id.action_github) {
+            startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/AMMAAR-IC")));
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

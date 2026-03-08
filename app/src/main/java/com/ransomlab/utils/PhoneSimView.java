@@ -6,11 +6,14 @@ import android.graphics.*;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -37,9 +40,14 @@ public class PhoneSimView extends View {
     private ValueAnimator glitchAnim;
     private ValueAnimator encryptAnim;
 
-    private float[] fileAlphas = new float[10];
-    private final String[] fileIcons = { "📷", "🎵", "📧", "🗺", "💬", "📞", "🌐", "⚙", "🏦", "🔐" };
-    private final String[] fileNames = { "Photos", "Music", "Mail", "Maps", "Chat", "Phone", "Browser", "System", "Bank", "Keys" };
+    private float[] fileAlphas = new float[9];
+    private final String[] fileIcons = { "🎵", "📧", "💳", "📷", "👻", "🌐", "🤖", "💬", "🧠", "🔐" };
+    private final String[] fileNames = { "Spotify", "Mail", "GPay", "Instagram", "OxiSense", "Snapchat", "Chrome", "ChatGPT", "WhatsApp", "Keys" };
+
+    // Crack easter egg
+    private int clickCount = 0;
+    private boolean isCracked = false;
+    private List<Path> crackPaths = new ArrayList<>();
 
     public PhoneSimView(Context ctx) { super(ctx); init(); }
     public PhoneSimView(Context ctx, AttributeSet a) { super(ctx, a); init(); }
@@ -58,6 +66,9 @@ public class PhoneSimView extends View {
         glitchAlpha = 0f;
         encryptProgress = 0f;
         attackName = "";
+        clickCount = 0;
+        isCracked = false;
+        crackPaths.clear();
         for (int i = 0; i < fileAlphas.length; i++) fileAlphas[i] = 1f;
         postInvalidate();
     }
@@ -80,7 +91,7 @@ public class PhoneSimView extends View {
             startEncrypt();
         }, 2500);
 
-        // After 6s → ransomed or wiped
+        // After 18s → ransomed or wiped
         handler.postDelayed(() -> {
             stopAnims();
             glitchAlpha = 0f;
@@ -91,7 +102,38 @@ public class PhoneSimView extends View {
             // keep redrawing for countdown
             startCountdownRefresh();
             if (done != null) done.run();
-        }, 6000);
+        }, 4000);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            clickCount++;
+            if (clickCount >= 5 && !isCracked) {
+                isCracked = true;
+                generateCracks();
+                postInvalidate();
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    private void generateCracks() {
+        crackPaths.clear();
+        int w = getWidth(), h = getHeight();
+        Random r = new Random();
+        for (int i = 0; i < 8; i++) {
+            Path p = new Path();
+            float x = r.nextInt(w);
+            float y = r.nextInt(h);
+            p.moveTo(x, y);
+            for (int j = 0; j < 5; j++) {
+                x += r.nextInt(200) - 100;
+                y += r.nextInt(200) - 100;
+                p.lineTo(x, y);
+            }
+            crackPaths.add(p);
+        }
     }
 
     // ── Animations ──────────────────────────────────────────────────────────
@@ -167,6 +209,19 @@ public class PhoneSimView extends View {
         int sh = ph - ph / 5;
 
         drawScreen(canvas, sx, sy, sw, sh);
+
+        if (isCracked) {
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(3f);
+            paint.setColor(Color.argb(180, 255, 255, 255));
+            for (Path p : crackPaths) {
+                canvas.drawPath(p, paint);
+            }
+            paint.setStyle(Paint.Style.FILL);
+        }
+        if (isCracked) {
+            drawCracks(canvas, px, py, pw, ph);
+        }
     }
 
     private void drawPhoneBody(Canvas c, int x, int y, int w, int h) {
@@ -280,9 +335,9 @@ public class PhoneSimView extends View {
         float startY = sy + sh * 0.28f;
 
         int[] iconColors = {
-            Color.rgb(25, 60, 100), Color.rgb(60, 25, 80), Color.rgb(25, 80, 50),
-            Color.rgb(80, 50, 20), Color.rgb(20, 70, 70), Color.rgb(70, 25, 25),
-            Color.rgb(40, 40, 80), Color.rgb(50, 70, 20), Color.rgb(25, 55, 90), Color.rgb(80, 30, 60)
+            Color.rgb(30, 215, 96), Color.rgb(219, 68, 55), Color.rgb(252, 186, 3), Color.rgb(131, 58, 180),
+            Color.rgb(255, 252, 0), Color.rgb(66, 133, 244), Color.rgb(113, 197, 197), Color.rgb(37, 211, 102),
+            Color.rgb(113, 197, 197), Color.rgb(80, 30, 60)
         };
 
         for (int row = 0; row < rows; row++) {
@@ -475,5 +530,29 @@ public class PhoneSimView extends View {
         for (int i = 0; i < lines.length; i++) {
             c.drawText(lines[i], sx + sw / 2f, sy + sh * 0.35f + i * sw * 0.1f, textPaint);
         }
+    }
+
+    private void drawCracks(Canvas c, int x, int y, int w, int h) {
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(3f);
+        paint.setColor(Color.argb(120, 255, 255, 255)); // Semi-transparent white
+
+        Path crack = new Path();
+        crack.moveTo(x + w * 0.2f, y);
+        crack.lineTo(x + w * 0.4f, y + h * 0.3f);
+        crack.lineTo(x + w * 0.1f, y + h * 0.5f);
+        crack.lineTo(x + w * 0.6f, y + h * 0.8f);
+        crack.lineTo(x + w, y + h * 0.6f);
+
+        crack.moveTo(x + w * 0.4f, y + h * 0.3f);
+        crack.lineTo(x + w * 0.8f, y + h * 0.2f);
+
+        crack.moveTo(x + w * 0.6f, y + h * 0.8f);
+        crack.lineTo(x + w * 0.5f, y + h);
+
+        c.drawPath(crack, paint);
+        paint.setStyle(Paint.Style.FILL);
+
+
     }
 }

@@ -1,6 +1,8 @@
 package com.ransomlab.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.ransomlab.R;
-import com.ransomlab.utils.OllamaClient;
 import com.ransomlab.utils.Prefs;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -38,6 +39,10 @@ public class SettingsActivity extends AppCompatActivity {
         View btnSave = findViewById(R.id.btn_save);
         View btnTest = findViewById(R.id.btn_test);
 
+        View btnContact = findViewById(R.id.btn_contact_us);
+        View btnLinkedin = findViewById(R.id.btn_linkedin);
+        View btnGithub = findViewById(R.id.btn_github);
+
         etUrl.setText(Prefs.getOllamaUrl(this));
 
         btnSave.setOnClickListener(v -> {
@@ -52,7 +57,6 @@ public class SettingsActivity extends AppCompatActivity {
             tvStatus.setText("Testing connection...");
             tvStatus.setTextColor(Color.rgb(255, 165, 0));
 
-            // Simple HEAD/GET test to /api/tags
             new Thread(() -> {
                 try {
                     String endpoint = url.trim();
@@ -81,6 +85,29 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }).start();
         });
+
+        btnContact.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:the.ammaar.ic@gmail.com"));
+            intent.putExtra(Intent.EXTRA_SUBJECT, "RansomLab Inquiry");
+            try {
+                startActivity(Intent.createChooser(intent, "Send Email"));
+            } catch (Exception e) {
+                Toast.makeText(this, "No email app found", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnLinkedin.setOnClickListener(v -> openUrl("https://www.linkedin.com/in/ammaar-ic"));
+        btnGithub.setOnClickListener(v -> openUrl("https://github.com/AMMAAR-IC"));
+    }
+
+    private void openUrl(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Cannot open link", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

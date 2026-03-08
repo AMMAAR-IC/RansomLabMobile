@@ -5,13 +5,31 @@
     <item
         android:id="@+id/action_ai"
         android:title="AI Intel"
-        android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:title="Settings"
-        android:icon="@android:drawable/ic_menu_preferences"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_contributors"
+        android:title="Contributors"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_contact"
+        android:title="Contact Us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_linkedin"
+        android:title="Connect on LinkedIn"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_github"
+        android:title="GitHub (AMMAAR-IC)"
         app:showAsAction="never" />
 
 </menu>

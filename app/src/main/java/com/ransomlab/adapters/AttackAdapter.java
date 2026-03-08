@@ -31,19 +31,21 @@ public class AttackAdapter extends RecyclerView.Adapter<AttackAdapter.VH> {
     @NonNull @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                               .inflate(R.layout.item_attack, parent, false);
+                .inflate(R.layout.item_attack, parent, false);
         return new VH(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VH h, int pos) {
         Attack a = attacks.get(pos);
-        int color = ColorUtil.parse(a.color);
 
-        h.name.setText(a.name);
-        h.year.setText(String.valueOf(a.year));
-        h.technique.setText(a.technique);
-        h.vector.setText(a.vector);
+        // FIXED: Using getter methods instead of direct variable access
+        int color = ColorUtil.parse(a.getColorHex());
+
+        h.name.setText(a.getName());
+        h.year.setText(String.valueOf(a.getYear()));
+        h.technique.setText(a.getType()); // Mapped technique to getType()
+        h.vector.setText(a.getVector());
 
         // Left accent bar
         h.accentBar.setBackgroundColor(color);
